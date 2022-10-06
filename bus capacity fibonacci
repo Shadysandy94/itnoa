@@ -1,0 +1,29 @@
+def do_allocation(number_of_people, number_of_buses):
+    # initializing required variables
+    bus_count = 1
+    current_bus_capacity = 2
+    bus_capacity_before = 1
+    people_remaining = number_of_people
+
+    # calculating the number of people boarding
+
+    def people_boarded():
+        if bus_capacity_before <= people_remaining:
+            return bus_capacity_before
+        else:
+            return people_remaining
+
+    while bus_count <= number_of_buses:
+        print(f'{people_boarded()} passengers got into bus number:{bus_count}')
+        people_remaining = people_remaining - int(people_boarded())
+        # fibonacci series for next bus capacity
+        next_bus_capacity = bus_capacity_before + current_bus_capacity
+        bus_capacity_before = current_bus_capacity
+        current_bus_capacity = next_bus_capacity
+
+        bus_count += 1
+
+
+people = int(input('enter number of people:'))
+buses = int(input('enter number of buses:'))
+result = do_allocation(people, buses)
